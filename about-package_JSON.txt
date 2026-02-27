@@ -1,0 +1,14 @@
+package.json by default of node.js  [npm init]
+it is configuration file of the project.
+
+### scripts =>
+in this you can and module names that can run using 
+'npm'
+example:
+
+"scripts":{
+    "start": "node hello.js"
+}
+
+inside terminal write: npm start
+it will execute the script
