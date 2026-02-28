@@ -3,10 +3,10 @@
 const fs = require("fs");
 
 // Sync....
-// fs.writeFileSync("./fsTEST.txt", "this is a msg");
+// fs.writeFileSync("./project1/fsTEST.txt", "this is a msg");
 
 // reading file Sync.
-const result = fs.readFileSync("./fsTEST.txt", 'utf-8');
+const result = fs.readFileSync("./project1/fsTEST.txt", 'utf-8');
 console.log(result);
 
 // readFile do not return result text
@@ -15,7 +15,7 @@ console.log(result);
 // non Sync readFile is written as- 
 // readFile has a callback function which has two parameters:
 //      1. ERROR(if any occur)      2.RESULT
-fs.readFile("./fsTEST.txt", "utf-8", (err, result) => {
+fs.readFile("./project1/fsTEST.txt", "utf-8", (err, result) => {
     if(err){
         console.log("something wrong: ", err);
     }
@@ -30,11 +30,11 @@ fs.readFile("./fsTEST.txt", "utf-8", (err, result) => {
 // writeFile() also expect a callback function
 // writeFileSync() return  a result.
 
-fs.appendFileSync("./fsTEST.txt", "\n added: "+ new Date().getFullYear().toLocaleString());
+fs.appendFileSync("./project1/fsTEST.txt", "\n added: "+ new Date().getFullYear().toLocaleString());
 
 // to delete a file
 // fs.unlinkSync("./copy.txt");
 
 // to find the statistics of a file
-const stats = fs.statSync("./fsTEST.txt");
+const stats = fs.statSync("./project1/fsTEST.txt");
 console.log(stats);
