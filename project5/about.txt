@@ -1,0 +1,11 @@
+in this video:10 piyush garg node.js Playlist,
+
+we will study about Express package.
+
+Express is just a framework, internally it uses http also.
+
+Express provides various built-in features like url-parsing and all
+
+we do not even need http package, Express manages all itself
+
+** to uninstall a package - npm uninstall <package-name>
