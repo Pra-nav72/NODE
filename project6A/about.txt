@@ -1,0 +1,26 @@
+in this, we will create a project with restAPIs
+
+Express is used;
+
+REST API use to store JSON data
+
+[api - to make it hybrid i.e. json format can be used on mobile devices & PC too]
+
+**for web servers --> GET /users => which will generate html codes using server-side scripting
+
+GET /api/users - this will show all the users
+
+
+[ Dynamic Path Parameters ]
+GET /api/users/1 - this will show user having ID = 1
+GET /api/users/2 - this will show user having ID = 2
+
+POST /api/users - create a new user
+
+PATCH /api/user/1 - Edit the user having ID 1
+
+DELETE /api/user/1 - DELETE the user having ID 1
+
+since, I have not connected to any database, so to get user data I have created and
+downloaded it from the website called mockaroo
+-------------  https://www.mockaroo.com/
