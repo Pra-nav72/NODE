@@ -29,7 +29,7 @@ app.post('/api/users', (req, res) => {
     // req.body contains all the data from the frontend body
     const body = req.body;
 
-    // adding json coming from POSTMAN's post request, incrementing value of id by 1.
+    // adding json coming from POSTMAN's post request, incrementing value of id by 1(bcoz ID isn't autoIncrementing by DB).
     users.push({...body, id: users.length + 1});
 
     // appending the data into the file
@@ -78,7 +78,7 @@ app.route('/api/users/:userid')
     // Update the user with new data
     users[userIndex] = {...users[userIndex], ...body};
     // ...users[userIndex] takes all the data of the user
-    // ...body takes all the data coming from the request & then overrite the old data with new one
+    // ...body takes all the data coming from the request & then override the old data with new one(bcoz duplicate data not allowed)
     // then assign back to the users[userIndex]
     
     // Write updated data back to file
@@ -109,5 +109,5 @@ app.route('/api/users/:userid')
     });
 });
 
-
+// server listening at port:8000
 app.listen(PORT, () => console.log(`server started at port: ${PORT}`));

@@ -1,0 +1,4 @@
+npm i nodemon
+
+"start" : nodemon index.js
+it automatically restarts the server after code modificatons
