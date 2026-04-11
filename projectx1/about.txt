@@ -1,0 +1,31 @@
+all the project ending with x... will be a typescript project.
+
+1. To download typescript in NODE.js
+npm i -D typescript or
+npm i -D typescript @types/node
+
+2. After installation[inside project]
+--> Since we have installed typescript, in order to use it, we need to use the following command 
+--> The command will initiate the typescript & add a tsConfig.json file.
+
+npx tsc --init
+(npx -> node package executer)
+
+3. Inside tsConfig.json file
+
+===> UNCOMMENT "rootDir", "outDir"
+--> need to create root directory with the specified name(./src)::: we code here.
+--> need to create out directory with the specified name (./dist)--distribution code ::::::::::
+:::::::::::::::::::::::::::::::::::typescript(.ts) to javascript(.js) code will generate there.
+
+
+
+4. write code inside src folder
+5. To RUN the Code.
+    ***** npm tsc ---> compiles the code***
+
+package.json ==> script ==> "start": "node dist/index.js"=> here index file go after compilation
+package.json ==> script ==> "dev": "npx tsc"==> here index.ts files compiles to index.js
+
+    AFTER POINT [5], EXECUTE THIS IN TERMINAL
+*****      npm dev start *********   ---> this will compile then execute
