@@ -1,1 +1,38 @@
 In this project we'll connect node.js to the Mongoose(mongoDB)
+
+after installing mongoDB
+1. in command promopt
+>>>mongosh
+this will start a demon of the mongo.
+
+2. installing mongoose inside project & add import it to the index.js.
+>>> npm i mongoose
+this a package helps to connect to mongoDB
+
+3. create schema
+const userSchema = new mongoose.Schema({ [define structure here] });
+
+4. create model
+const User = mongoose.model('<model-name>', <schema[userSchema]>);
+----> using the 'User' we can communicate with DB(after connection)
+
+5. DataBase connection.
+after point 1. you'll receive the URL of the DB server. suppose (mongodb://127.0.0:27017)
+it will return a promise.
+>> mongoose.connect('mongodb://127.0.0:27017/[DataBase-Name]').then().catch();
+
+6. Now you can check your db & collection (inside mongosh <-- cmd)
+>>>show dbs
+>>>use [dataBase-Name]
+>>>show collections    ---> This will show model-name(with 's' -suffix)
+
+6. with the help of User model we do CRUD operations
+//create
+const result = User.create({ <user data here> });
+
+
+**************   How Mongoose WORKS   ******************
+
+i. it has a schema (defination of the structure).
+ii.    Schema -> Model (using this schema, we create model)
+iii.    Using the Model we do CRUD operations.
