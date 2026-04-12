@@ -1,0 +1,1 @@
+In this project, we will start to follow MVC (Model View Controller) architecture.
