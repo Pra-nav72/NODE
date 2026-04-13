@@ -3,8 +3,8 @@ const { handleGenerateUrl, handleRedirectUrl, handleGetAnalytics } = require("..
 
 const router = express.Router();
 
-router.post("/", handleGenerateUrl);
+router.post("/url", handleGenerateUrl);
 router.get("/:url",  handleRedirectUrl);
-router.get("/analytics/:url", handleGetAnalytics);
+router.get("/url/analytics/:url", handleGetAnalytics);
 
 module.exports = router;

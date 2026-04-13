@@ -32,7 +32,13 @@ async function handleGetAnalytics(req, res) {
 
     const entry = await URL.findOne({shortId});
     
-    return res.status(200).json({visit: entry.visitHistory.length, data: entry} );
+    return res.status(200)
+    .json(
+        {
+            totalClicks: entry.visitHistory.length,
+            visitData: entry.visitHistory
+        } 
+    );
 }
 
 module.exports = {

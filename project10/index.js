@@ -16,7 +16,7 @@ connectMongoDb("mongodb://127.0.0.1:27017/short-url")
 // middleware for postman
 app.use(express.urlencoded({extended: false}));
 
-app.use("/url", urlRoute);
+app.use("/", urlRoute);
 
 
 app.listen(PORT, ()=> console.log(`server started at port: ${PORT}`));
