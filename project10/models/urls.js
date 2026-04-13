@@ -11,9 +11,11 @@ const urlSchema = new mongoose.Schema({
     redirectUrl:{
         type: String,
         required: true,
+        // intetionally true
+        unique: true,
     },
     // Array of objects (objects of time Number)
-    visitHistory:[ { timestamp: {type: Number}} ],
+    visitHistory:[ { timestamp: {type: String}} ],
 }, 
 {timestamps: true});
 
