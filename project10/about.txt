@@ -1,0 +1,8 @@
+in this project we will create a url shortner.
+this will take Post("url") and return a shorted url
+and also keep analytics details.
+
+go to website: npmjs.com & searc short id
+** from here you can find to download string shortner package to install for the project. **
+
+>>> npm i short-id
