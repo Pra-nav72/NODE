@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EJS templating engine</title>
+</head>
+<body>
+    <% if (locals.student) { %>
+        <table>
+            <thead>
+                <th>name</th>
+                <th>Roll no.</th>
+                <th>Division</th>
+                <th>college</th>
+                <th>skills</th>
+            </thead>
+            <% student.forEach(info => { %>
+                <tr>
+                    <td><%= info.name %></td>
+                    <td><%= info.roll %></td>
+                    <td><%= info.division %></td>
+                    <td><%= info.college %></td>
+                    <td><%= info.skills %></td>
+                </tr>
+            <% }) %>
+    
+        </table>
+    <% } else { %>
+        <%= "no records to show!" %>
+    <% } %>
+     
+         
+    
+</body>
+</html>
