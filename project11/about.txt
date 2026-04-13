@@ -1,0 +1,6 @@
+In this project, we will focus on server side rendering.
+with the help of ejs templating engine.
+
+
+install EJS
+>>> npm i ejs
