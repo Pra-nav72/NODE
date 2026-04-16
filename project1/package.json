@@ -1,0 +1,13 @@
+{
+  "name": "node-js",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Pranav Kumar",
+  "type": "commonjs",
+  "main": "O1_hello.js",
+  "scripts": {
+    "start": "node O1_hello",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
