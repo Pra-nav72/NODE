@@ -11,7 +11,7 @@ async function handleSignupPage(req, res) {
 async function handleLoginPage(req, res) {
     const user = req.body;
     console.log(user);
-    const token = setUser(user);
+    const token = await setUser(user.email);
     res.cookie("uid", token);
     return res.redirect("/kids");
 }

@@ -1,10 +1,11 @@
 const jwt = require("jsonwebtoken");
 const secret = "Prnv@@##7772kumar";
 async function setUser(user) {
-    // const payload ={
-    //     ...user,
-    // };
-    return jwt.sign(user, secret, {expiresIn: '1hr'});
+    const payload ={
+        id: user,
+        name: "pranav",
+    };
+    return jwt.sign(payload, secret, {expiresIn: '1hr'});
 }
 
 
