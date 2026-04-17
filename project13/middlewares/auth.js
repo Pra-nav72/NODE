@@ -9,7 +9,12 @@ async function restrictToLoggedInUsersOnly(req, res, next) {
         console.log("userId missing");
         return res.status(404).redirect('/login');
     }
-
+    const user = await getUser(userId);
+    if(!user){
+        console.log("user missing!: ", user);
+        return res.status(404).redirect('/login');
+    }
+    req.user = user;
     next();
 }
 
