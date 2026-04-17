@@ -1,0 +1,22 @@
+// In this project we will doing stateless authenticaion using JWT
+
+1. install jsonwebtoken package
+>>> npm i jsonwebtoken
+
+2.create a file inside services folder named as auth.js
+import jwt = require("jsonwebtoken);
+
+3. under setUser(id, user) function, create payload={ id, ...user} ---> all user data
+
+4. now we will return it inside jwt.sign(payload, secretKey, {expiresIn: '1hr'})
+**** secretKey is very important, we should write it inside environment variable.
+**** whoever has the secretKey, is the user i.e, if someone gets you secretKey
+        the server will conside him as you. *********************
+
+5. now in controllers's, inside login handling function generate the token
+ const token = setUser(user);
+
+6. install cookie-parser, app.use(cookieParser) & set cookie("uid": token);
+
+7. inside services/auth.js, create a function getUser(token){jwt.verify(token, secretKey)};
+// we will verify the user with our secretKey. if matches allow further access.

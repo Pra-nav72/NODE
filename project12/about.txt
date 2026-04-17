@@ -47,9 +47,12 @@ if available then send that user with the request(req.user = user) then next()
 9. since, we are dealing with the cookies, we need to a package cookie-parser
 >>> npm i cookie-parser
 
-10. import cookie-parser & the MiddleWare file(auth.py) in [routes] folder
+10. import cookie-parser as cookieParser to main index.js file.
+    app.use(cookieParser());
 
-11. now for whichever route you want user to be stayed logged in, i.e. that MiddleWare
+11. import the MiddleWare file(auth.py) in [routes] folder
+
+12. now for whichever route you want user to be stayed logged in, i.e. that MiddleWare
     will only run on that particular url
 ==> use that MiddleWare function(restrictToLoggedInUsersOnly) as 2nd argument.
 
