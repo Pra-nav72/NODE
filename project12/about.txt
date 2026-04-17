@@ -1,1 +1,56 @@
 This Project will be based on authentications.
+Authentication patterns --> 1. statefull    2. stateless
+1.statefull : maintains state
+client will give username/password to SERVER
+SERVER will give him a session uid(unique Id) 
+(like in parking, you got a token & parking boy have the token no. 
+which is assigned to your vehicle number)
+
+Now whenever user make request to server, it also sends the session uid with it
+
+### uid can be transfered in 3 ways: #######
+i. cookies (works fine if working with browsers)
+ii. response
+iii. header (should use this with restAPIs)
+
+*** Express FLOW ****
+client ==> Auth MiddleWare ===> endpoint route
+
+AuthMiddleware checks cookie value or uid, if valid calls next() else
+reject the requests.
+
+============================================================================================
+1.create a new collection: (model, userSchema) (models/index.js)
+2. first create the login/signup pages
+3. install uuid package (it generates longer unique id which will be add as cookie)
+>>> npm i uuid
+
+4. const {v4: uuidv4} = require("uuid");
+==> import v4 as uuidv4 from uuid
+
+5. inside login controller,
+  const sessionId = uuid();
+
+6. create a folder(services), with a file auth.js
+    here, we'll create a hashmap for user and sessionId
+    setUser(sessionId, user), getUser(id)
+
+7. now inside login controller, setUser with sessionId & and user details(login data)
+
+8. set cookie==> res.cookie('uid', sessionId);
+    you can check sessionId in inspect panel, under application tab.
+
+NOW, we just only access the cookie value in MiddleWare, and perform task accordingly
+i.e. authencticate if the cookie & user mapped with that cookie available or not.
+if available then send that user with the request(req.user = user) then next()
+
+9. since, we are dealing with the cookies, we need to a package cookie-parser
+>>> npm i cookie-parser
+
+10. import cookie-parser & the MiddleWare file(auth.py) in [routes] folder
+
+11. now for whichever route you want user to be stayed logged in, i.e. that MiddleWare
+    will only run on that particular url
+==> use that MiddleWare function(restrictToLoggedInUsersOnly) as 2nd argument.
+
+app.use("/users", restrictToLoggedInUsersOnly, handleGetUser);

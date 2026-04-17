@@ -1,6 +1,7 @@
 const express = require("express");
-const path = require("path");
 const connectDB = require("./connect.js");
+const path = require("path");
+const cookieParser = require("cookie-parser");
 
 
 const app = express();
@@ -19,6 +20,11 @@ app.use(express.json());
 app.set("view engine", "ejs");
 app.set("views", path.resolve("./views"));
 
+app.use(cookieParser());
 app.use("/", router);
+// static routes
+app.get("/login", (req, res)=>{
+    res.render("login");
+})
 
 app.listen(PORT, ()=>console.log(`Server start at port: ${PORT}`));
