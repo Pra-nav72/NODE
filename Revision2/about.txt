@@ -1,3 +1,12 @@
 >>>  npm i morgan ::: to log request's data
 >>>  npm i dotenv ::: to access all the variables in .env file
     after that create a config folder with file config.js where import dotenv and call config(). 
+
+>>> using inbuilt package 'crypto' for hashing password
+
+    const hashedPassword = crypto.createHash("sha256").update(password).digest("hex");
+
+## what this line mean, what is happening in above line.
+
+
+>>> jwtsecrets.com for generating jwt secret key.
