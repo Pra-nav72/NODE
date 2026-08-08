@@ -22,13 +22,28 @@ async function handleUserSignup(req, res) {
     // creating user
     const user = await User.create({username, email, password:hashedPassword});
 
-    // creating token(jwt) for authenction
-    const token = jwt.sign({
+    // creating access token(jwt) for authenction
+    const accessToken = jwt.sign({
         id: user._id
     },config.SECRET_KEY,
     {
-        expiresIn: "1d" //1h - hour
+        expiresIn: "15m" //1h - hour
     });
+
+    // creating refresh token(jwt)
+    const refreshToken = jwt.sign({
+        id: user._id
+    }, config.SECRET_KEY,{
+        expiresIn: "15d"
+    });
+
+    res.cookie("refreshToken", refreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000  // 7days
+    })
+
 
     res.status(201).json({
         message: "you signed up successfully",
@@ -36,7 +51,7 @@ async function handleUserSignup(req, res) {
             username: user.username,
             email: user.email
         },
-        token
+        accessToken
     })
 }
 
@@ -61,7 +76,48 @@ async function handleUserGetme(req, res){
         }
     });
 }
+
+async function handleUserRefreshToken(req, res){
+    const refreshToken = req.cookies?.refreshToken;
+
+    // if user don't have refresh token
+    if(!refreshToken){
+        res.status(401).json({
+            message: "refresh token not found!"
+        });
+    }
+
+    // if they have refresh token then we get the user.id from it and generate new access token
+    const decoded = jwt.verify(refreshToken, config.SECRET_KEY);
+
+    const accessToken = jwt.sign({
+        id: decoded.id}, config.SECRET_KEY, {
+            expiresIn: "15min"
+        }
+    );
+
+    // for additional security we also generate new refresh token and set it in cookie.
+    const newRefreshToken = jwt.sign({
+        id: decoded.id}, config.SECRET_KEY, {
+            expiresIn: "7d"
+        }
+    );
+    // set newRefreshToken to cookie having refreshToken
+    res.cookie("refreshToken", newRefreshToken, {
+        httpOnly: true,
+        secure: true,
+        sameSite: "strict",
+        maxAge: 7 * 24 * 60 * 60 * 1000 // 7days
+    });
+
+
+    res.status(200).json({
+        message: "access token refreshed successfully",
+        accessToken
+    });
+}
 module.exports = {
     handleUserSignup,
     handleUserGetme,
+    handleUserRefreshToken,
 }

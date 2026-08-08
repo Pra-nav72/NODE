@@ -10,3 +10,10 @@
 
 
 >>> jwtsecrets.com for generating jwt secret key.
+
+**************************************************
+there are 2 types of token used in application to prevent any token theft from attacker.
+i. access token : used to authenticate user, stored in memory(can't be accessed by attacker)
+ii. refresh token : user get new access token when they send request to certain endPoint(/api/auth/refresh-token) with refresh token to server. refresh token is stored in the cookie at client side.
+
+## we create new refresh token and asign it to the cookie for every refresh-token request & invalidate the old refresh token. it is used for additional security.
