@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>sign in</title>
+</head>
+<body>
+    <main class="items-center text-center bg-cyan-700 h-[80vh] w-[30vw] rounded-2xl shadow-2xl mx-auto my-7 px-4 py-2 text-white">
+        <h1 class="text-3xl">Sign in</h1>
+        <form action="/user/signin" method="post" class="text-black my-10">
+            
+            <input type="email" name="email" placeholder="xyz@abc.com" required class="bg-white px-2 py-0.5 min-w-[25vw] my-2">
+            
+            <input type="password" name="password" placeholder="password" class="bg-white px-2 py-0.5 min-w-[25vw] my-2">
+            <input type="submit" value="sign in" class="rounded-2xl bg-green-800 text-white px-4 py-2 my-5">
+        </form>
+        <span><i>new user,  </i></span><a href="/user/signup" class="text-yellow-300">sign up</a>
+    </main>
+</body>
+</html>

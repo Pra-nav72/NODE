@@ -59,6 +59,31 @@ userSchema.pre('save', function (next){
     next;
 })
 
+// mongoose virtual function comparing password(signin) /w hashedPassword(signup)
+userSchema.static('matchPassword', async function (email, password) {
+
+    // find user using login credential(email: unique)
+    const user = await this.findOne({email})
+    if(!user) throw new Error('user not found!');
+
+    // find salt and password of the user that already exists
+    const salt = user.salt;
+    const hashedPassword = user.password;
+
+    // create hash password using login credentials(password)
+    const userProvidedHash = crypto.createHmac('sha256', salt).update(password).digest('hex');
+
+    
+    // compare the existed user password /w login credentials 
+    if(userProvidedHash !== hashedPassword) throw new Error("Incorrect password");
+        
+
+    // if password matched return the user & remove unnecessary informations
+    return user;
+});
+
+
+// creating model
 const user = mongoose.model("User", userSchema);
 
 module.exports= user;
