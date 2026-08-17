@@ -1,5 +1,6 @@
 const express = require('express');
 const User = require('../models/user');
+const { trusted } = require('mongoose');
 
 async function handleUserSignup(req, res) {
     const {username, gender, email, password, role} = req.body;
@@ -8,7 +9,7 @@ async function handleUserSignup(req, res) {
     if(!userExist){
         await User.create({username, gender, email, password, role});
     }
-    return res.redirect('/');
+    return res.render('signin');
 
 }
 
@@ -21,20 +22,25 @@ async function handleUserSignin(req, res) {
      * 
      * for this we use mongoose virtual function.
     */
-   
-   const user = User.matchPassword(email, password);
-   console.log("1", user);
-   
-   if(user){
-        res.redirect('/')
-   }
-    else if(user==='undefined'){
-    res.status(404).json({'message':'passord incorrect'})
+   try {
+        const token = await User.matchPasswordAndGenerateToken(email, password);
+        
+        res.cookie('token', token)
+        return res.render('home', {user: req.user});
+   } catch (error) {
+        res.render('signin', {
+            error: 'Incorrect Email or Password'
+        })
    }
 }
 
 
+async function handleUserLogOut(req, res) {
+    return res.clearCookie('token').render('signin');
+}
+
 module.exports={
     handleUserSignup,
     handleUserSignin,
+    handleUserLogOut,
 }

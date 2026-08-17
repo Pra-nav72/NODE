@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const crypto = require('crypto');
+const {createUserToken} = require('../utils/auth')
 
 const userSchema = new mongoose.Schema({
     username:{
@@ -60,7 +61,7 @@ userSchema.pre('save', function (next){
 })
 
 // mongoose virtual function comparing password(signin) /w hashedPassword(signup)
-userSchema.static('matchPassword', async function (email, password) {
+userSchema.static('matchPasswordAndGenerateToken', async function (email, password) {
 
     // find user using login credential(email: unique)
     const user = await this.findOne({email})
@@ -78,8 +79,9 @@ userSchema.static('matchPassword', async function (email, password) {
     if(userProvidedHash !== hashedPassword) throw new Error("Incorrect password");
         
 
-    // if password matched return the user & remove unnecessary informations
-    return user;
+    const token = createUserToken(user);
+
+    return token;
 });
 
 
