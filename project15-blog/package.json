@@ -1,0 +1,26 @@
+{
+  "name": "project15-blog",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "pranav",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:css": "npx @tailwindcss/cli -i ./src/input.css -o ./public/css/output.css --minify",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./public/css/output.css --watch",
+    "start": "npm run build:css && nodemon server.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "ejs": "^6.0.1",
+    "express": "^5.2.1",
+    "mongoose": "^9.9.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "nodemon": "^3.1.14",
+    "tailwindcss": "^4.3.3"
+  }
+}
