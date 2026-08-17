@@ -1,0 +1,134 @@
+<!-- Blog Card -->
+<article
+    class="group w-full max-w-sm
+           overflow-hidden
+           rounded-2xl
+           m-2 p-2
+           bg-slate-900
+           border border-slate-800
+           shadow-xl
+           hover:-translate-y-1
+           hover:border-cyan-500/50
+           hover:shadow-cyan-500/10
+           transition-all duration-300"
+>
+
+    <!-- Cover Image -->
+    <div class="relative h-52 overflow-hidden">
+
+        <img
+            src="<%= blog.coverImageURL %>"
+            alt="<%= blog.title %>"
+            class="w-full h-full
+                   object-cover
+                   group-hover:scale-105
+                   transition-transform duration-500"
+        >
+
+        <!-- Gradient -->
+        <div
+            class="absolute inset-0
+                   bg-linear-to-t
+                   from-slate-900/80
+                   via-transparent
+                   to-transparent"
+        ></div>
+
+    </div>
+
+
+    <!-- Card Content -->
+    <div class="p-5">
+
+        <!-- Author -->
+        <div class="flex items-center gap-3 mb-4">
+
+            <img
+                src="<%= blog.createdBy.profileImageURL %>"
+                alt="<%= blog.createdBy.username %>"
+                class="w-9 h-9
+                       rounded-full
+                       object-cover
+                       border border-cyan-400"
+            >
+
+            <div class="min-w-0">
+
+                <p class="text-sm font-medium text-white truncate">
+                    <%= blog.createdBy.username %>
+                </p>
+
+                <p class="text-xs text-slate-500">
+                    <%= new Date(blog.createdAt).toLocaleDateString() %>
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Title -->
+        <h2
+            class="text-xl
+                   font-bold
+                   text-white
+                   line-clamp-2
+                   group-hover:text-cyan-400
+                   transition-colors duration-200"
+        >
+            <%= blog.title %>
+        </h2>
+
+
+        <!-- Description -->
+        <p
+            class="mt-3
+                   text-sm
+                   leading-6
+                   text-slate-400
+                   line-clamp-3"
+        >
+            <%= blog.body %>
+        </p>
+
+
+        <!-- Read More -->
+        <div class="mt-5 flex items-center justify-between">
+
+            <a
+                href="/blog/<%= blog._id %>"
+                class="inline-flex
+                       items-center
+                       gap-2
+                       text-sm
+                       font-semibold
+                       text-cyan-400
+                       hover:text-cyan-300
+                       transition-colors"
+            >
+                Read more
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-4 h-4
+                           group-hover:translate-x-1
+                           transition-transform"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M13 7l5 5m0 0l-5 5m5-5H6"
+                    />
+                </svg>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</article>

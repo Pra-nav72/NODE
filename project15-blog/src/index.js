@@ -1,8 +1,10 @@
 const express = require('express');
 const path = require('path');
-const router  = require('./routes/user');
+const route  = require('./routes/user');
+const blogRoute = require('./routes/blog')
 const cookieParser = require('cookie-parser');
 const { checkForAuthenticationCookie } = require('./middlewares/authentication');
+const Blog = require('./models/blog');
 
 const app = express();
 
@@ -17,10 +19,23 @@ app.use(cookieParser());
 
 //custom middleware
 app.use(checkForAuthenticationCookie("token")); // token is the name of cookie
-app.get('/', (req, res) => {
-  return res.render('signin')
+
+app.use((req, res, next) => {
+    res.locals.user = req.user;
+    next();
 });
 
-app.use('/user', router);
+app.get('/', async (req, res) => {
+    const allBlogs = await Blog.find()
+            .populate("createdBy")
+            .sort({ createdAt: -1 });
+            
+  return res.render('home', {
+    blogs: allBlogs,
+  });
+});
+
+app.use('/user', route);
+app.use('/blog', blogRoute);
 
 module.exports = app;

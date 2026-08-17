@@ -12,6 +12,7 @@ router.get("/signin", (req, res)=>{
     res.render('signin')
 });
 
+
 router.get('/logOut', handleUserLogOut);
 
 router.post('/signup', handleUserSignup);

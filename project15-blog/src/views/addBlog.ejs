@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('./partials/head') %>
+    <title>Create Blog</title>
+</head>
+
+<body class="min-h-screen bg-slate-950 px-4 py-10">
+
+    <!-- Background decoration -->
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40
+                    w-96 h-96
+                    bg-cyan-500/20
+                    rounded-full
+                    blur-3xl"></div>
+
+        <div class="absolute -bottom-40 -left-40
+                    w-96 h-96
+                    bg-blue-600/20
+                    rounded-full
+                    blur-3xl"></div>
+    </div>
+
+
+    <!-- Main container -->
+    <main class="relative w-full max-w-3xl mx-auto">
+
+        <!-- Card -->
+        <div class="bg-white/10
+                    backdrop-blur-xl
+                    border border-white/10
+                    rounded-3xl
+                    shadow-2xl
+                    p-6 sm:p-10">
+
+            <!-- Header -->
+            <div class="mb-8">
+
+                <div class="flex items-center gap-4 mb-4">
+
+                    <div class="w-12 h-12
+                                rounded-xl
+                                bg-linear-to-br
+                                from-cyan-400 to-blue-600
+                                flex items-center justify-center
+                                shadow-lg shadow-cyan-500/20">
+
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            class="w-6 h-6 text-white"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M12 20h9
+                                   M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1
+                                   1-4L16.5 3.5z"
+                            />
+                        </svg>
+
+                    </div>
+
+                    <div>
+                        <h1 class="text-3xl font-bold text-white">
+                            Create a Blog
+                        </h1>
+
+                        <p class="text-slate-400 text-sm mt-1">
+                            Share your thoughts with the world
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Form -->
+            <form
+                action="/blog"
+                method="post"
+                enctype="multipart/form-data"
+                class="space-y-6"
+            >
+
+                <!-- Title -->
+                <div>
+
+                    <label
+                        for="title"
+                        class="block text-sm font-medium
+                               text-slate-300 mb-2"
+                    >
+                        Blog Title
+                    </label>
+
+                    <input
+                        id="title"
+                        type="text"
+                        name="title"
+                        placeholder="Enter an interesting title..."
+                        required
+                        maxlength="150"
+                        class="w-full
+                               bg-slate-900/70
+                               border border-slate-700
+                               rounded-xl
+                               px-4 py-3
+                               text-white
+                               placeholder-slate-500
+                               outline-none
+                               transition
+                               focus:border-cyan-400
+                               focus:ring-2
+                               focus:ring-cyan-400/20"
+                    >
+
+                    <p class="text-xs text-slate-500 mt-2">
+                        Keep your title clear and engaging.
+                    </p>
+
+                </div>
+
+
+                <!-- Body -->
+                <div>
+
+                    <label
+                        for="body"
+                        class="block text-sm font-medium
+                               text-slate-300 mb-2"
+                    >
+                        Blog Content
+                    </label>
+
+                    <textarea
+                        id="body"
+                        name="body"
+                        rows="12"
+                        placeholder="Start writing your story..."
+                        required
+                        class="w-full
+                               bg-slate-900/70
+                               border border-slate-700
+                               rounded-xl
+                               px-4 py-3
+                               text-white
+                               placeholder-slate-500
+                               outline-none
+                               resize-y
+                               transition
+                               focus:border-cyan-400
+                               focus:ring-2
+                               focus:ring-cyan-400/20"
+                    ></textarea>
+
+                    <p class="text-xs text-slate-500 mt-2">
+                        Write something useful, interesting, or inspiring.
+                    </p>
+
+                </div>
+
+
+               <!-- Cover Image -->
+<div>
+
+    <label
+        class="block text-sm font-medium
+               text-slate-300 mb-2"
+    >
+        Cover Image
+    </label>
+
+    <!-- Upload Area -->
+    <label
+        for="coverImage"
+        id="uploadArea"
+        class="relative flex flex-col items-center
+               justify-center
+               w-full h-56
+               rounded-2xl
+               border-2 border-dashed
+               border-slate-700
+               bg-slate-900/50
+               cursor-pointer
+               hover:border-cyan-400
+               hover:bg-cyan-400/5
+               transition-all duration-200
+               overflow-hidden"
+    >
+
+        <!-- Default upload content -->
+        <div id="uploadContent"
+             class="flex flex-col items-center">
+
+            <div class="w-12 h-12 rounded-full
+                        bg-slate-800
+                        flex items-center justify-center
+                        mb-3">
+
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="w-6 h-6 text-cyan-400"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                >
+                    <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 16V4
+                           m0 0L8 8
+                           m4-4l4 4
+                           M4 16v3a1 1 0 001 1h14
+                           a1 1 0 001-1v-3"
+                    />
+                </svg>
+
+            </div>
+
+            <p class="text-sm text-slate-400">
+
+                <span class="text-cyan-400 font-medium">
+                    Click to upload
+                </span>
+
+                or drag and drop
+
+            </p>
+
+            <p class="text-xs text-slate-600 mt-2">
+                PNG, JPG, JPEG or WEBP · Max 5MB
+            </p>
+
+        </div>
+
+
+        <!-- Image Preview -->
+        <img
+            id="imagePreview"
+            class="hidden absolute inset-0
+                   w-full h-full
+                   object-cover"
+            alt="Cover image preview"
+        >
+
+
+        <!-- Selected image overlay -->
+        <div
+            id="imageInfo"
+            class="hidden absolute bottom-0 left-0 right-0
+                   bg-slate-950/80
+                   backdrop-blur-sm
+                   px-4 py-3"
+        >
+
+            <div class="flex items-center justify-between">
+
+                <div class="min-w-0">
+
+                    <p
+                        id="fileName"
+                        class="text-sm text-white
+                               font-medium truncate"
+                    >
+                    </p>
+
+                    <p
+                        id="uploadStatus"
+                        class="text-xs text-green-400 mt-1"
+                    >
+                        ✓ Image selected successfully
+                    </p>
+
+                </div>
+
+                <span
+                    class="ml-3 text-xs text-cyan-400
+                           whitespace-nowrap"
+                >
+                    Change
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <input
+            id="coverImage"
+            type="file"
+            name="coverImage"
+            accept="image/png,image/jpeg,image/webp"
+            class="hidden"
+        >
+
+    </label>
+
+</div>
+
+
+<!-- JavaScript -->
+<script>
+
+    const coverImage = document.getElementById("coverImage");
+    const imagePreview = document.getElementById("imagePreview");
+    const uploadContent = document.getElementById("uploadContent");
+    const imageInfo = document.getElementById("imageInfo");
+    const fileName = document.getElementById("fileName");
+    const uploadArea = document.getElementById("uploadArea");
+
+    coverImage.addEventListener("change", function () {
+
+        const file = this.files[0];
+
+        // No file selected
+        if (!file) {
+            imagePreview.classList.add("hidden");
+            imageInfo.classList.add("hidden");
+            uploadContent.classList.remove("hidden");
+
+            return;
+        }
+
+        // Check file type
+        const allowedTypes = [
+            "image/jpeg",
+            "image/png",
+            "image/webp"
+        ];
+
+        if (!allowedTypes.includes(file.type)) {
+
+            alert("Please select a JPG, PNG, or WEBP image.");
+
+            coverImage.value = "";
+
+            return;
+        }
+
+        // Check file size
+        const maxSize = 5 * 1024 * 1024;
+
+        if (file.size > maxSize) {
+
+            alert("Image must be smaller than 5MB.");
+
+            coverImage.value = "";
+
+            return;
+        }
+
+
+        // Show file name
+        fileName.textContent = file.name;
+
+
+        // Create preview
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+
+            imagePreview.src = event.target.result;
+
+            imagePreview.classList.remove("hidden");
+
+            uploadContent.classList.add("hidden");
+
+            imageInfo.classList.remove("hidden");
+
+            uploadArea.classList.remove("border-slate-700");
+
+            uploadArea.classList.add("border-green-500");
+
+        };
+
+        reader.readAsDataURL(file);
+
+    });
+
+</script>
+
+
+                <!-- Buttons -->
+                <div class="flex flex-col sm:flex-row
+                            gap-3 pt-2">
+
+                    <!-- Cancel -->
+                    <a
+                        href="/"
+                        class="flex-1
+                               text-center
+                               py-3
+                               rounded-xl
+                               border border-slate-700
+                               text-slate-300
+                               hover:bg-slate-800
+                               hover:text-white
+                               transition"
+                    >
+                        Cancel
+                    </a>
+
+
+                    <!-- Create -->
+                    <button
+                        type="submit"
+                        class="flex-1
+                               py-3
+                               rounded-xl
+                               bg-linear-to-r
+                               from-cyan-500 to-blue-600
+                               hover:from-cyan-400
+                               hover:to-blue-500
+                               text-white
+                               font-semibold
+                               shadow-lg
+                               shadow-blue-500/20
+                               transition-all
+                               hover:scale-[1.01]
+                               active:scale-[0.99]"
+                    >
+                        Publish Blog
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -9,7 +9,7 @@ async function handleUserSignup(req, res) {
     if(!userExist){
         await User.create({username, gender, email, password, role});
     }
-    return res.render('signin');
+    return res.redirect('/user/signup');
 
 }
 
@@ -26,7 +26,7 @@ async function handleUserSignin(req, res) {
         const token = await User.matchPasswordAndGenerateToken(email, password);
         
         res.cookie('token', token)
-        return res.render('home', {user: req.user});
+        return res.redirect('/');
    } catch (error) {
         res.render('signin', {
             error: 'Incorrect Email or Password'
@@ -36,7 +36,7 @@ async function handleUserSignin(req, res) {
 
 
 async function handleUserLogOut(req, res) {
-    return res.clearCookie('token').render('signin');
+    return res.clearCookie('token').redirect('/');
 }
 
 module.exports={
