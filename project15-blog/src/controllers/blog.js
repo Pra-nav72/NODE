@@ -13,6 +13,17 @@ async function handleNewBlog(req, res) {
     return res.redirect(`/blog/${blog._id}`);
 }
 
+async function handleReadBlog(req, res) {
+    const blog = await Blog.findById(req.params.id).populate("createdBy");
+
+    if (!blog) {
+        return res.status(404).send("Blog not found");
+    }
+
+    res.render("blog-details", { blog });
+}
+
 module.exports = {
     handleNewBlog,
+    handleReadBlog,
 }

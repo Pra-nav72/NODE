@@ -19,4 +19,12 @@ function checkForAuthenticationCookie(cookieName){
 
 }
 
-module.exports = {checkForAuthenticationCookie, };
+function requireAuthentication(req, res, next) {
+    if (!req.user) {
+        return res.redirect('/user/signin');
+    }
+
+    return next();
+}
+
+module.exports = {checkForAuthenticationCookie, requireAuthentication, };

@@ -1,6 +1,7 @@
 const express = require('express');
 const User = require('../models/user');
 const { trusted } = require('mongoose');
+const Blog = require('../models/blog');
 
 async function handleUserSignup(req, res) {
     const {username, gender, email, password, role} = req.body;
@@ -39,8 +40,20 @@ async function handleUserLogOut(req, res) {
     return res.clearCookie('token').redirect('/');
 }
 
+async function handleUserProfile(req, res) {
+    const id = req.user.id;
+
+    const blogs = await Blog.find({
+        createdBy: id
+    }).populate("createdBy");
+
+    // send username
+    const username = blogs[0].createdBy.username;
+    res.render('profile', {blogs, username});
+}
 module.exports={
     handleUserSignup,
     handleUserSignin,
     handleUserLogOut,
+    handleUserProfile,
 }
