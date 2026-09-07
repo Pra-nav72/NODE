@@ -1,0 +1,23 @@
+{
+  "name": "college-assignment",
+  "version": "1.0.0",
+  "description": "programs for mid term practical submission",
+  "homepage": "https://github.com/Pra-nav72/NODE#readme",
+  "bugs": {
+    "url": "https://github.com/Pra-nav72/NODE/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pra-nav72/NODE.git"
+  },
+  "license": "ISC",
+  "author": "pranav kumar",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "dependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
